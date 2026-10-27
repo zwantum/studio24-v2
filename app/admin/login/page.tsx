@@ -58,14 +58,9 @@ export default function AdminLoginPage() {
               />
             </div>
           </Link>
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#A6A182] font-semibold">
-              Atelier Command Center
-            </span>
-          </div>
-          <h1 className="font-sans text-2xl font-semibold tracking-tight text-white">Admin Authentication</h1>
+          <h1 className="font-sans text-2xl font-semibold tracking-tight text-white">Admin Login</h1>
           <p className="text-xs text-zinc-400 mt-1 font-light">
-            Authorized Studio24 concierge & administrative staff only
+            Authorized administrative access only
           </p>
         </div>
 

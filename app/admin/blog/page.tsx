@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {
   FileText,
-  Sparkles,
   Database,
   ExternalLink,
   Search,
@@ -98,17 +97,11 @@ export default function AdminBlogPage() {
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/[0.08] pb-6">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#A6A182]" />
-            <span className="text-[11px] font-mono tracking-widest text-[#A6A182] uppercase">
-              Content & Editorial Studio
-            </span>
-          </div>
-          <h1 className="text-2xl md:text-3xl font-light text-white font-serif tracking-wide">
-            Architectural Perspectives & Blog
+          <h1 className="text-2xl md:text-3xl font-normal text-white tracking-wide">
+            Blog Management
           </h1>
           <p className="text-xs md:text-sm text-zinc-400 font-sans mt-1">
-            Manage dispatches, design articles, and ZwantumBlog integration.
+            Manage articles, categories, and blog publications.
           </p>
         </div>
 
@@ -166,13 +159,13 @@ export default function AdminBlogPage() {
 
         <div className="bg-[#121215] border border-white/[0.06] p-4 flex flex-col justify-between">
           <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
-            Zwantum Engine
+            Blog Status
           </span>
           <div className="flex items-baseline justify-between mt-3">
             <span className="text-sm font-mono text-zinc-200">
-              {hasZwantumSchema ? 'v1.2 Connected' : 'Ready (Hybrid)'}
+              {hasZwantumSchema ? 'Connected' : 'Active'}
             </span>
-            <Sparkles className="w-4 h-4 text-[#A6A182]" />
+            <FileText className="w-4 h-4 text-[#A6A182]/60" />
           </div>
         </div>
       </div>
@@ -199,8 +192,8 @@ export default function AdminBlogPage() {
               : 'border-transparent text-zinc-400 hover:text-white'
           }`}
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#A6A182]" />
-          ZwantumBlog Engine
+          <FileText className="w-3.5 h-3.5 text-[#A6A182]" />
+          Blog Editor
         </button>
 
         <button
@@ -213,9 +206,6 @@ export default function AdminBlogPage() {
         >
           <Database className="w-3.5 h-3.5 text-[#A6A182]" />
           Schema & Migration
-          {!hasZwantumSchema && (
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse ml-1" />
-          )}
         </button>
       </div>
 
@@ -346,22 +336,19 @@ export default function AdminBlogPage() {
         </div>
       )}
 
-      {/* Tab 2: ZwantumBlog Engine */}
+      {/* Tab 2: Blog Editor */}
       {activeTab === 'zwantum' && (
         <div className="space-y-6">
           <div className="bg-[#121215] border border-white/[0.08] p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 text-[#A6A182]" />
+              <FileText className="w-5 h-5 text-[#A6A182]" />
               <div>
-                <h3 className="text-sm font-medium text-white">ZwantumBlog Full Management Console</h3>
+                <h3 className="text-sm font-medium text-white">Blog Editor</h3>
                 <p className="text-xs text-zinc-400">
-                  Compose rich Tiptap dispatches, manage media assets, revisions, and categories.
+                  Compose articles, manage media assets, revisions, and categories.
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 bg-white/[0.04] border border-white/10 text-zinc-300 uppercase">
-              Engine v1.2
-            </span>
           </div>
 
           <div className="bg-[#121215] border border-white/[0.08] p-6 rounded-none min-h-[600px] overflow-hidden">

@@ -14,7 +14,6 @@ import {
   Eye,
   X,
   RefreshCw,
-  Plus,
   AlertCircle,
   FileSpreadsheet,
 } from 'lucide-react';
@@ -175,48 +174,17 @@ export default function AdminInquiriesPage() {
     document.body.removeChild(link);
   };
 
-  // Quick Seed Test Lead (Helpful for demonstration)
-  const addSampleInquiry = async () => {
-    try {
-      const sample = {
-        fullName: 'Vikramaditya Singh',
-        phone: '+919876543210',
-        email: 'vikram.singh@example.com',
-        serviceType: activeSection === 'All Sections' ? 'Full Turnkey Residential' : activeSection,
-        propertyConfig: '3BHK Apartment (1,500 - 2,400 sq.ft)',
-        locationBudget: 'Gomti Nagar Phase 2, Lucknow • ₹25 Lakhs',
-        notes: 'Interested in bespoke travertine stone wall joinery and modular kitchen design.',
-      };
-
-      const res = await fetch('/api/consultation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(sample),
-      });
-
-      if (res.ok) {
-        await loadInquiries();
-      }
-    } catch (e) {
-      console.error('Failed to add sample lead:', e);
-    }
-  };
 
   return (
     <div className="space-y-6 animate-in fade-in-50 duration-300">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#A6A182] font-semibold">
-              Client Registry
-            </span>
-          </div>
           <h1 className="font-sans text-2xl sm:text-3xl font-semibold tracking-tight text-white">
-            Form Data (Section-Wise)
+            Form Inquiries
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1 font-light">
-            Filter, inspect, manage, and export client inquiries categorized by architectural service sections
+            Consultation inquiries organized by service section.
           </p>
         </div>
 
@@ -239,15 +207,6 @@ export default function AdminInquiriesPage() {
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV ({filteredInquiries.length})</span>
           </button>
-
-          <button
-            onClick={addSampleInquiry}
-            className="px-4 py-2.5 bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-zinc-200 transition-colors flex items-center gap-1.5 shadow-md cursor-pointer"
-            title="Generate a test lead in current section"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Add Test Lead</span>
-          </button>
         </div>
       </div>
 
@@ -269,7 +228,7 @@ export default function AdminInquiriesPage() {
               >
                 <span>{section}</span>
                 <span
-                  className={`px-2 py-0.5 text-[10px] rounded-full font-mono ${
+                  className={`px-2 py-0.5 text-[10px] font-mono ${
                     isActive ? 'bg-white text-black font-bold' : 'bg-[#18181c] text-zinc-400 border border-white/10'
                   }`}
                 >

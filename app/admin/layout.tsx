@@ -12,7 +12,6 @@ import {
   LogOut,
   Menu,
   X,
-  Sparkles,
 } from 'lucide-react';
 
 const navigation = [
@@ -80,12 +79,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   className="object-contain object-left transition-opacity group-hover:opacity-85"
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#A6A182] font-semibold">
-                  Atelier Concierge
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              </div>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-medium">
+                Admin Panel
+              </span>
             </Link>
           </div>
 

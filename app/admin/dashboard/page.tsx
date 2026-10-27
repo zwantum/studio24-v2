@@ -12,7 +12,6 @@ import {
   RefreshCw,
   ExternalLink,
   Layers,
-  Sparkles,
 } from 'lucide-react';
 import { Inquiry } from '@/lib/inquiries';
 
@@ -73,16 +72,11 @@ export default function AdminDashboardPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#A6A182] font-semibold">
-              Executive Overview
-            </span>
-          </div>
           <h1 className="font-sans text-2xl sm:text-3xl font-semibold tracking-tight text-white">
-            Studio24 Atelier Dashboard
+            Dashboard
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1 font-light">
-            Real-time monitoring of client consultations, architectural sections, and editorial monograph
+            Overview of consultation inquiries and blog publications.
           </p>
         </div>
 
@@ -117,7 +111,7 @@ export default function AdminDashboardPage() {
           </div>
           <div>
             <div className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">{total}</div>
-            <span className="text-[11px] text-zinc-400 font-light mt-1 block">From public website forms</span>
+            <span className="text-[11px] text-zinc-400 font-light mt-1 block">Total received</span>
           </div>
         </div>
 
@@ -131,7 +125,7 @@ export default function AdminDashboardPage() {
           </div>
           <div>
             <div className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">{newLeads}</div>
-            <span className="text-[11px] text-amber-300/80 font-light mt-1 block">Awaiting initial call</span>
+            <span className="text-[11px] text-zinc-400 font-light mt-1 block">Requires response</span>
           </div>
         </div>
 
@@ -145,21 +139,21 @@ export default function AdminDashboardPage() {
           </div>
           <div>
             <div className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">{inProgress}</div>
-            <span className="text-[11px] text-zinc-400 font-light mt-1 block">Meetings &amp; 3D Design</span>
+            <span className="text-[11px] text-zinc-400 font-light mt-1 block">In progress</span>
           </div>
         </div>
 
         {/* Blog Publication */}
         <div className="p-5 sm:p-6 bg-[#121215] border border-white/10 relative overflow-hidden flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-mono uppercase tracking-wider text-emerald-300">Blog Articles</span>
-            <div className="w-8 h-8 rounded-none bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-300">
+            <span className="text-xs font-mono uppercase tracking-wider text-zinc-300">Blog Articles</span>
+            <div className="w-8 h-8 rounded-none bg-white/[0.04] border border-white/10 flex items-center justify-center text-zinc-300">
               <BookOpen className="w-4 h-4" />
             </div>
           </div>
           <div>
             <div className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">{postsCount}</div>
-            <span className="text-[11px] text-emerald-300/80 font-light mt-1 block">Live in monograph</span>
+            <span className="text-[11px] text-zinc-400 font-light mt-1 block">Published posts</span>
           </div>
         </div>
       </div>
@@ -207,26 +201,23 @@ export default function AdminDashboardPage() {
 
         {/* Right: Quick Links & ZwantumBlog Publication Status */}
         <div className="lg:col-span-5 space-y-6">
-          {/* ZwantumBlog Card */}
+          {/* Blog Management Card */}
           <div className="bg-[#121215] border border-white/10 p-6 sm:p-7 relative overflow-hidden">
-            <div className="flex items-center justify-between mb-4">
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#A6A182] font-semibold">
-                ZwantumBlog Engine
-              </span>
-              <span className="px-2 py-0.5 text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                Connected
+            <div className="mb-4">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 font-medium">
+                Blog Management
               </span>
             </div>
-            <h3 className="font-sans text-xl font-semibold text-white mb-2">Editorial Monograph &amp; Journal</h3>
+            <h3 className="font-sans text-xl font-semibold text-white mb-2">Blog Articles</h3>
             <p className="text-xs text-zinc-400 font-light leading-relaxed mb-6">
-              Manage articles, rich-text Tiptap formatting, categories, tags, and automated SEO metadata schemas.
+              Create, edit, and manage articles, categories, and tags.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <Link
                 href="/admin/blog"
                 className="w-full sm:w-auto px-4 py-2.5 bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2"
               >
-                <span>Open Blog Studio</span>
+                <span>Manage Blog</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
@@ -240,10 +231,10 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          {/* Concierge Hotline Card */}
+          {/* Contact Card */}
           <div className="bg-[#121215] border border-white/10 p-6 flex items-center justify-between">
             <div className="space-y-1">
-              <span className="text-xs font-mono uppercase tracking-wider text-zinc-400">Direct Atelier Line</span>
+              <span className="text-xs font-mono uppercase tracking-wider text-zinc-400">Office Phone</span>
               <div className="text-base font-semibold text-white">+91 9324241800</div>
               <p className="text-[11px] text-zinc-400">5th Floor, Summit Building, Gomti Nagar</p>
             </div>
