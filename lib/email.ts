@@ -1,5 +1,14 @@
 import nodemailer from 'nodemailer';
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export async function sendConsultationNotification(lead: {
   fullName: string;
   phone: string;
@@ -31,10 +40,18 @@ export async function sendConsultationNotification(lead: {
       },
     });
 
+    const safeName = escapeHtml(lead.fullName.replace(/[\r\n]/g, ''));
+    const safeService = escapeHtml(lead.serviceType.replace(/[\r\n]/g, ''));
+    const safePhone = escapeHtml(lead.phone.replace(/[\r\n]/g, ''));
+    const cleanPhoneDigits = lead.phone.replace(/[^0-9]/g, '');
+    const safeConfig = lead.propertyConfig ? escapeHtml(lead.propertyConfig) : '';
+    const safeLocation = lead.locationBudget ? escapeHtml(lead.locationBudget) : '';
+    const safeNotes = lead.notes ? escapeHtml(lead.notes) : '';
+
     const mailOptions = {
       from: `"Studio24 Atelier Concierge" <${from}>`,
       to,
-      subject: `🏛️ New Interior Consultation Request: ${lead.fullName} (${lead.serviceType})`,
+      subject: `🏛️ New Interior Consultation Request: ${safeName} (${safeService})`,
       html: `
         <div style="font-family: Arial, sans-serif; background: #09090b; color: #f5f5f7; padding: 32px; border-radius: 8px;">
           <h2 style="color: #A6A182; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 12px; margin-top: 0;">
@@ -43,33 +60,33 @@ export async function sendConsultationNotification(lead: {
           <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
             <tr>
               <td style="padding: 8px 0; color: #a1a1aa; width: 180px;">Client Name:</td>
-              <td style="padding: 8px 0; color: #ffffff; font-weight: bold;">${lead.fullName}</td>
+              <td style="padding: 8px 0; color: #ffffff; font-weight: bold;">${safeName}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #a1a1aa;">Phone Number:</td>
               <td style="padding: 8px 0; color: #ffffff;">
-                <a href="tel:${lead.phone}" style="color: #A6A182; text-decoration: none;">${lead.phone}</a>
-                (<a href="https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}" style="color: #25D366; text-decoration: none;">WhatsApp</a>)
+                <a href="tel:${safePhone}" style="color: #A6A182; text-decoration: none;">${safePhone}</a>
+                (<a href="https://wa.me/${cleanPhoneDigits}" style="color: #25D366; text-decoration: none;">WhatsApp</a>)
               </td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #a1a1aa;">Service Type:</td>
-              <td style="padding: 8px 0; color: #ffffff;">${lead.serviceType}</td>
+              <td style="padding: 8px 0; color: #ffffff;">${safeService}</td>
             </tr>
-            ${lead.propertyConfig ? `
+            ${safeConfig ? `
             <tr>
               <td style="padding: 8px 0; color: #a1a1aa;">Property Configuration:</td>
-              <td style="padding: 8px 0; color: #ffffff;">${lead.propertyConfig}</td>
+              <td style="padding: 8px 0; color: #ffffff;">${safeConfig}</td>
             </tr>` : ''}
-            ${lead.locationBudget ? `
+            ${safeLocation ? `
             <tr>
               <td style="padding: 8px 0; color: #a1a1aa;">Location / Budget:</td>
-              <td style="padding: 8px 0; color: #ffffff;">${lead.locationBudget}</td>
+              <td style="padding: 8px 0; color: #ffffff;">${safeLocation}</td>
             </tr>` : ''}
-            ${lead.notes ? `
+            ${safeNotes ? `
             <tr>
               <td style="padding: 8px 0; color: #a1a1aa; vertical-align: top;">Client Notes:</td>
-              <td style="padding: 8px 0; color: #d4d4d8;">${lead.notes}</td>
+              <td style="padding: 8px 0; color: #d4d4d8;">${safeNotes}</td>
             </tr>` : ''}
           </table>
           <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #71717a;">
@@ -85,3 +102,4 @@ export async function sendConsultationNotification(lead: {
     console.error('Failed to send email notification:', error);
   }
 }
+

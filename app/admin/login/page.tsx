@@ -7,8 +7,7 @@ import Link from 'next/link';
 import { Lock, Mail, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 
 export default function AdminLoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState('amandangi950@gmail.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -30,11 +29,9 @@ export default function AdminLoginPage() {
         throw new Error(data.error || 'Invalid credentials');
       }
 
-      router.push('/admin/dashboard');
-      router.refresh();
+      window.location.href = '/admin/dashboard';
     } catch (err: any) {
       setError(err.message || 'Authentication failed. Please verify credentials.');
-    } finally {
       setLoading(false);
     }
   };
@@ -53,6 +50,7 @@ export default function AdminLoginPage() {
                 src="/Studio24_Logo.webp"
                 alt="Studio24 by Shreya"
                 fill
+                sizes="144px"
                 className="object-contain"
                 priority
               />

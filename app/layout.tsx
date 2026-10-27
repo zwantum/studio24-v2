@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         className={`${montserrat.variable} ${alexBrush.variable} font-sans bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen relative`}
       >

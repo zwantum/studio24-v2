@@ -39,17 +39,29 @@ export async function getAdminSession(): Promise<{ email: string } | null> {
   const cookieStore = await cookies();
   const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME);
 
-  if (!sessionCookie?.value) return null;
-
-  try {
-    const decoded = JSON.parse(Buffer.from(sessionCookie.value, 'base64').toString('utf-8'));
-    if (decoded.expiresAt && decoded.expiresAt > Date.now()) {
-      if (isValidAdminEmail(decoded.email)) {
-        return { email: decoded.email };
+  if (sessionCookie?.value) {
+    try {
+      const decoded = JSON.parse(Buffer.from(sessionCookie.value, 'base64').toString('utf-8'));
+      if (decoded.expiresAt && decoded.expiresAt > Date.now()) {
+        if (isValidAdminEmail(decoded.email)) {
+          return { email: decoded.email.toLowerCase() };
+        }
       }
+    } catch (e) {
+      // Fall through
+    }
+  }
+
+  // Fallback: check Supabase auth
+  try {
+    const { createServerSupabaseClient } = await import('@/lib/supabase/server');
+    const supabase = await createServerSupabaseClient();
+    const { data } = await supabase.auth.getUser();
+    if (data?.user?.email && isValidAdminEmail(data.user.email)) {
+      return { email: data.user.email.toLowerCase() };
     }
   } catch (e) {
-    return null;
+    // Session not found
   }
 
   return null;

@@ -1,24 +1,149 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   LayoutDashboard,
   Inbox,
   BookOpen,
+  ChevronDown,
+  ChevronRight,
+  FileText,
+  PenSquare,
+  Folder,
+  Users,
+  Image as ImageIcon,
+  Settings,
   ExternalLink,
   LogOut,
   Menu,
   X,
 } from 'lucide-react';
 
-const navigation = [
-  { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-  { name: 'Form Inquiries', href: '/admin/inquiries', icon: Inbox },
-  { name: 'Blog / Publication', href: '/admin/blog', icon: BookOpen },
+const blogSubItems = [
+  { name: 'Overview', view: 'overview', icon: LayoutDashboard },
+  { name: 'All Posts', view: 'posts', icon: FileText },
+  { name: 'Add New Post', view: 'new-post', icon: PenSquare },
+  { name: 'Categories', view: 'categories', icon: Folder },
+  { name: 'Authors', view: 'authors', icon: Users },
+  { name: 'Media Library', view: 'media', icon: ImageIcon },
+  { name: 'Blog Settings', view: 'settings', icon: Settings },
 ];
+
+function AdminNavContent({
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}: {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
+}) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const isBlogRoute = pathname.startsWith('/admin/blog');
+  const [isBlogOpen, setIsBlogOpen] = useState(true);
+
+  // Keep blog menu open when on blog route
+  useEffect(() => {
+    if (isBlogRoute) {
+      setIsBlogOpen(true);
+    }
+  }, [isBlogRoute]);
+
+  const currentBlogView = isBlogRoute ? searchParams.get('view') || 'overview' : '';
+
+  return (
+    <nav className="p-4 space-y-1.5">
+      {/* 1. Dashboard */}
+      <Link
+        href="/admin/dashboard"
+        onClick={() => setMobileMenuOpen(false)}
+        className={`flex items-center gap-3 px-4 py-3 text-xs font-mono uppercase tracking-wider transition-all duration-200 rounded-none ${
+          pathname === '/admin/dashboard'
+            ? 'bg-white text-black font-semibold shadow-md'
+            : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+        }`}
+      >
+        <LayoutDashboard className="w-4 h-4 shrink-0" />
+        <span>Dashboard</span>
+      </Link>
+
+      {/* 2. Form Inquiries */}
+      <Link
+        href="/admin/inquiries"
+        onClick={() => setMobileMenuOpen(false)}
+        className={`flex items-center gap-3 px-4 py-3 text-xs font-mono uppercase tracking-wider transition-all duration-200 rounded-none ${
+          pathname.startsWith('/admin/inquiries')
+            ? 'bg-white text-black font-semibold shadow-md'
+            : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+        }`}
+      >
+        <Inbox className="w-4 h-4 shrink-0" />
+        <span>Form Inquiries</span>
+      </Link>
+
+      {/* 3. Blog Articles (Collapsible Module matching Reference) */}
+      <div className="pt-1">
+        <Link
+          href="/admin/blog?view=overview"
+          onClick={() => {
+            setIsBlogOpen(true);
+            setMobileMenuOpen(false);
+          }}
+          className={`w-full flex items-center justify-between px-4 py-3 text-xs font-mono uppercase tracking-wider transition-all duration-200 rounded-none cursor-pointer ${
+            isBlogRoute
+              ? 'bg-white text-black font-semibold shadow-md'
+              : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <BookOpen className="w-4 h-4 shrink-0" />
+            <span>Blog Articles</span>
+          </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsBlogOpen(!isBlogOpen);
+            }}
+            className="p-1 -mr-1 hover:bg-black/10 rounded-none shrink-0 transition-transform duration-200"
+            title="Toggle submenu"
+          >
+            {isBlogOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+          </button>
+        </Link>
+
+        {/* Sub-Items */}
+        {isBlogOpen && (
+          <div className="flex flex-col gap-1 mt-1 pl-3 pr-1 py-1 border-l border-white/10 ml-4">
+            {blogSubItems.map((sub) => {
+              const Icon = sub.icon;
+              const isActive = isBlogRoute && currentBlogView === sub.view;
+
+              return (
+                <Link
+                  key={sub.view}
+                  href={`/admin/blog?view=${sub.view}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-2.5 px-3 py-2 text-xs font-sans tracking-wide transition-all duration-150 rounded-none ${
+                    isActive
+                      ? 'bg-white text-black font-semibold shadow-sm'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span>{sub.name}</span>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+}
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -39,6 +164,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       router.push('/admin/login');
     }
   };
+
+
 
   return (
     <div className="min-h-screen bg-[#09090b] text-[#f5f5f7] flex flex-col md:flex-row antialiased">
@@ -67,7 +194,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           mobileMenuOpen ? 'block' : 'hidden'
         } md:flex flex-col w-full md:w-64 lg:w-72 bg-[#101013] border-b md:border-b-0 md:border-r border-white/10 shrink-0 sticky top-0 h-auto md:h-screen z-30 justify-between`}
       >
-        <div>
+        <div className="overflow-y-auto">
           {/* Brand Wordmark & Tag */}
           <div className="p-6 border-b border-white/10 hidden md:block">
             <Link href="/admin/dashboard" className="block group">
@@ -85,36 +212,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </Link>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="p-4 space-y-1.5">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 text-xs font-mono uppercase tracking-wider transition-all duration-200 ${
-                    isActive
-                      ? 'bg-white text-black font-semibold shadow-md'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <Icon className="w-4 h-4 shrink-0" />
-                  <span>{item.name}</span>
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Navigation Links inside Suspense for useSearchParams */}
+          <Suspense fallback={<div className="p-4 text-xs text-zinc-500">Loading navigation...</div>}>
+            <AdminNavContent
+              mobileMenuOpen={mobileMenuOpen}
+              setMobileMenuOpen={setMobileMenuOpen}
+            />
+          </Suspense>
         </div>
 
         {/* Bottom Actions & User Coordinates */}
-        <div className="p-4 border-t border-white/10 space-y-3">
+        <div className="p-4 border-t border-white/10 space-y-3 shrink-0 bg-[#101013]">
           <Link
             href="/"
             target="_blank"
-            className="flex items-center justify-between px-3 py-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors border border-white/5 hover:border-white/20"
+            className="flex items-center justify-between px-3 py-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors border border-white/5 hover:border-white/20 rounded-md"
           >
             <span>Live Website</span>
             <ExternalLink className="w-3.5 h-3.5" />
@@ -127,7 +239,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
             <button
               onClick={handleLogout}
-              className="p-2 border border-white/10 hover:border-red-500/50 hover:bg-red-950/20 text-zinc-400 hover:text-red-300 transition-colors shrink-0"
+              className="p-2 border border-white/10 hover:border-red-500/50 hover:bg-red-950/20 text-zinc-400 hover:text-red-300 transition-colors shrink-0 rounded-md cursor-pointer"
               title="Logout from Admin Portal"
               aria-label="Logout"
             >
