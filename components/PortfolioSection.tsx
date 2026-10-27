@@ -154,30 +154,33 @@ export default function PortfolioSection() {
 
   return (
     <section id="portfolio-curation" className="w-full bg-transparent py-14 md:py-20 lg:py-24 relative overflow-hidden">
+      {/* Dark subtle backdrop overlay to ensure 'Our Work Speaks for Itself' text is prominent and high contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b] via-[#09090b]/85 to-[#09090b] pointer-events-none z-0" />
+
       {/* Ambient Atmospheric Lighting */}
-      <div className="absolute -top-32 right-0 w-96 h-96 rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
+      <div className="absolute -top-32 right-0 w-96 h-96 rounded-full bg-primary/5 blur-[120px] pointer-events-none z-0" />
 
       <div className="w-full px-margin-mobile md:px-margin-tablet lg:px-8 xl:px-margin relative z-10 mb-10 md:mb-14">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="font-label-eyebrow text-label-eyebrow text-[#A6A182] uppercase tracking-[0.25em] font-semibold">
+              <span className="font-label-eyebrow text-label-eyebrow text-[#A6A182] uppercase tracking-[0.25em] font-semibold drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
                 FEATURED PROJECTS
               </span>
               <span className="h-px w-8 bg-[#A6A182]/50" />
             </div>
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] leading-[1.22] sm:leading-[1.24] text-white font-semibold tracking-tight">
+            <h2 className="font-sans text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] leading-[1.22] sm:leading-[1.24] text-white font-semibold tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
               Our Work<br />Speaks for Itself
             </h2>
           </div>
           <div className="flex flex-col items-start lg:items-end gap-3.5 max-w-md">
-            <p className="font-body-md text-sm sm:text-[17px] text-[#c5c5cb] font-light leading-relaxed lg:text-right">
+            <p className="font-body-md text-sm sm:text-[17px] text-[#e0e0e6] font-light leading-relaxed lg:text-right drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
               A collection of spaces designed with purpose, combining aesthetic sensibilities with practical solutions.
             </p>
             <a
               href="#consultation-booking"
-              className="group inline-flex items-center gap-2 text-white hover:text-zinc-300 font-medium text-xs sm:text-sm uppercase tracking-widest transition-colors duration-300"
+              className="group inline-flex items-center gap-2 text-white hover:text-zinc-300 font-medium text-xs sm:text-sm uppercase tracking-widest transition-colors duration-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
             >
               <span className="border-b border-white/40 group-hover:border-white pb-0.5 transition-colors">
                 View All Projects
@@ -192,7 +195,7 @@ export default function PortfolioSection() {
       <div
         ref={wrapperRef}
         id="showcase-carousel-wrapper"
-        className="relative w-full overflow-hidden select-none py-2"
+        className="relative w-full overflow-hidden select-none py-2 z-10"
         onMouseEnter={pauseAutoplay}
         onMouseLeave={startAutoplay}
         onTouchStart={handleTouchStart}
@@ -237,26 +240,22 @@ export default function PortfolioSection() {
                   }`}
                 />
 
-                {/* Content Overlay */}
+                {/* Content Overlay with Dark Gradient Backdrop for text visibility */}
                 <div
                   className={`showcase-content absolute inset-0 transition-opacity duration-500 ${
                     isActive ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                   }`}
                 >
-                  <div className="absolute left-4 right-4 sm:left-auto sm:right-10 md:right-14 bottom-4 sm:bottom-8 md:bottom-10 flex flex-col items-start z-10 text-left">
-                    <h3 className="font-sans font-medium text-lg xs:text-xl sm:text-2xl lg:text-[28px] text-white leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+                  {/* Rich dark gradient overlay ensuring title and category are always crystal clear */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none" />
+
+                  <div className="absolute left-4 right-4 sm:left-auto sm:right-10 md:right-14 bottom-5 sm:bottom-9 md:bottom-11 flex flex-col items-start z-10 text-left">
+                    <h3 className="font-sans font-medium text-lg xs:text-xl sm:text-2xl lg:text-[28px] text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
                       {slide.title}
                     </h3>
-                    <p className="font-sans font-light text-xs sm:text-sm text-gray-200 mt-1 drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
+                    <p className="font-sans font-light text-xs sm:text-sm text-gray-200 mt-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                       {slide.category}
                     </p>
-                    <a
-                      href="#consultation-booking"
-                      className="w-11 h-11 rounded-full border border-primary/80 bg-black/50 backdrop-blur-md hover:bg-primary hover:text-surface-noir flex items-center justify-center text-white transition-all duration-300 mt-2.5 sm:mt-3 group/btn shadow-xl min-w-[44px] min-h-[44px]"
-                      aria-label={`Explore ${slide.title}`}
-                    >
-                      <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-0.5 transition-transform" />
-                    </a>
                   </div>
                 </div>
               </div>
