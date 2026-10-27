@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    margin: 0;
+    padding: 0;
+    background-color: #09090b;
+    color: #ffffff;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #09090b;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: clip; /* Cleanly clip horizontal overflow without trapping vertical scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hide scrollbars cleanly on html and body */
+  html,
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.signature-font {
+  font-family: var(--font-alex-brush), 'Alex Brush', cursive !important;
+}
+
+/* ========================================================
+   ARCHITECTURAL GRID LINES & FALLING LIGHT DROP EFFECT
+   Continuous ambient light beams in background below content
+   ======================================================== */
+.architectural-lines-container,
+.architectural-lines-container * {
+  pointer-events: none !important;
+}
+
+.architectural-lines-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  z-index: 0; /* Below website content and headers */
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.arch-line {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.01) 0%,
+    rgba(255, 255, 255, 0.035) 15%,
+    rgba(255, 255, 255, 0.035) 85%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+}
+
+.arch-drop {
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 85px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(255, 255, 255, 0.45) 75%,
+    rgba(255, 255, 255, 0.72) 92%,
+    rgba(166, 161, 130, 0.65) 100%
+  );
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.35), 0 0 10px rgba(166, 161, 130, 0.2);
+  border-radius: 9999px;
+  opacity: 0;
+  animation-name: dropStreakAnim;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  will-change: transform, opacity;
+}
+
+@keyframes dropStreakAnim {
+  0% {
+    transform: translate(-50%, -100px);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.72;
+  }
+  35% {
+    opacity: 0.72;
+  }
+  42% {
+    transform: translate(-50%, calc(100vh + 100px));
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, calc(100vh + 100px));
+    opacity: 0;
+  }
+}
+
+.drop-1  { animation-duration: 9.5s;  animation-delay: 0s; }
+.drop-2  { animation-duration: 11s;   animation-delay: 3.5s; }
+.drop-3  { animation-duration: 10s;   animation-delay: 7s; }
+.drop-4  { animation-duration: 9s;    animation-delay: 2s; }
+.drop-5  { animation-duration: 10.5s; animation-delay: 5.5s; }
+.drop-6  { animation-duration: 11.5s; animation-delay: 8.5s; }
+.drop-7  { animation-duration: 9.8s;  animation-delay: 4s; }
+
+@media (max-width: 640px) {
+  .arch-line-hide-mobile {
+    display: none !important;
+  }
+  .architectural-lines-container {
+    padding: 0 8%;
+  }
+}
+
+/* Featured Projects Showcase Carousel styles */
+.showcase-slide {
+  margin-left: -42px !important;
+  margin-right: -42px !important;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.65s ease;
+}
+
+@media (max-width: 1024px) {
+  .showcase-slide {
+    margin-left: -30px !important;
+    margin-right: -30px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase-slide {
+    margin-left: -14px !important;
+    margin-right: -14px !important;
+  }
+}
