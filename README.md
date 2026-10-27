@@ -58,6 +58,7 @@ studio24-new/
 │   ├── BlogSection.tsx           # Monograph & journal entries with architectural insights
 │   ├── ConsultationSection.tsx   # Contact coordinates, Google Map embed & interactive form
 │   ├── FaqSection.tsx            # Accessible accordion with smooth expand/collapse & WhatsApp prompt
+│   ├── FloatingWhatsApp.tsx      # Clean floating concierge WhatsApp button
 │   ├── Footer.tsx                # Architectural noir grid footer with vertical wordmark
 │   ├── HeroSection.tsx           # Cinematic hero showcase with dark vignette overlays & CTAs
 │   ├── LegalModal.tsx            # Accessible modal dialog for Terms, Conditions & Privacy Policy

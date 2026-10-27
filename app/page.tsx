@@ -14,6 +14,7 @@ import FaqSection from '@/components/FaqSection';
 import BlogSection from '@/components/BlogSection';
 import ConsultationSection from '@/components/ConsultationSection';
 import Footer from '@/components/Footer';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 export default function HomePage() {
   return (
@@ -67,6 +68,9 @@ export default function HomePage() {
 
       {/* Atelier Minimal Noir Grid Footer */}
       <Footer />
+
+      {/* Concierge Floating WhatsApp Quick Connect */}
+      <FloatingWhatsApp />
     </>
   );
 }

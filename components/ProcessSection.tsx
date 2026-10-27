@@ -23,7 +23,7 @@ const steps = [
     number: '04',
     title: 'Handover',
     desc: 'Pristine deep cleaning, staging of bespoke soft furnishings, lighting calibration, and presenting the turnkey sanctuary keys ready for immediate luxury living.',
-    highlight: true,
+    // highlight: true,
   },
 ];
 
@@ -59,11 +59,10 @@ export default function ProcessSection() {
               <div key={idx} className="flex flex-col relative group">
                 <div className="flex items-center justify-between mb-6 relative">
                   <div
-                    className={`w-10 h-10 flex items-center justify-center font-semibold text-sm z-10 transition-transform duration-300 group-hover:scale-110 shadow-lg ${
-                      step.highlight
+                    className={`w-10 h-10 flex items-center justify-center font-semibold text-sm z-10 transition-transform duration-300 group-hover:scale-110 shadow-lg ${step.highlight
                         ? 'bg-white text-black font-bold shadow-[0_0_15px_rgba(255,255,255,0.25)]'
                         : 'bg-[#141418] border border-white/20 text-[#A6A182] group-hover:bg-white group-hover:text-black'
-                    }`}
+                      }`}
                   >
                     {step.number}
                   </div>

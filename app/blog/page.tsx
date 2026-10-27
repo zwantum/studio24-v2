@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { getAllBlogPosts, getBlogCategories } from '@/lib/blogData';
 import { Clock, Calendar, ArrowRight, Tag, BookOpen, Sparkles } from 'lucide-react';
 
@@ -276,6 +277,7 @@ export default async function BlogIndexPage({
       </main>
 
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }

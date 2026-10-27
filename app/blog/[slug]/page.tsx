@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { getBlogPostBySlug, getAllBlogPosts, type Studio24Post } from '@/lib/blogData';
 import BlogPostReader from '@/components/BlogPostReader';
 import {
@@ -321,6 +322,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </main>
 
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
