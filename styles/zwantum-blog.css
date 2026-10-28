@@ -1013,6 +1013,204 @@
   font-family: inherit !important;
 }
 
+/* ==========================================================================
+   Studio 24 Noir Atelier Blog Reader Dark Mode Typography
+   High contrast, warm luxury editorial styling for dark background (#09090b)
+   ========================================================================== */
+
+.studio24-article-content,
+.studio24-article-content .zw-blog-content,
+.studio24-article-content .blog-content,
+.studio24-article-content .zw-blog-prose,
+.zw-blog-prose {
+  color: #D6D2C9 !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.85 !important;
+}
+
+.studio24-article-content p,
+.zw-blog-prose p {
+  color: #D6D2C9 !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.85 !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.studio24-article-content h1,
+.studio24-article-content h2,
+.studio24-article-content h3,
+.studio24-article-content h4,
+.studio24-article-content h5,
+.studio24-article-content h6,
+.zw-blog-prose h1,
+.zw-blog-prose h2,
+.zw-blog-prose h3,
+.zw-blog-prose h4,
+.zw-blog-prose h5,
+.zw-blog-prose h6 {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.3 !important;
+}
+
+.studio24-article-content h1,
+.zw-blog-prose h1 {
+  font-size: 2.25rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.studio24-article-content h2,
+.zw-blog-prose h2 {
+  font-size: 1.75rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-bottom: 0.6rem !important;
+}
+
+.studio24-article-content h3,
+.zw-blog-prose h3 {
+  font-size: 1.35rem !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.studio24-article-content h4,
+.zw-blog-prose h4 {
+  font-size: 1.15rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.studio24-article-content strong,
+.studio24-article-content b,
+.zw-blog-prose strong,
+.zw-blog-prose b {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+.studio24-article-content em,
+.studio24-article-content i,
+.zw-blog-prose em,
+.zw-blog-prose i {
+  color: #ECE7DE !important;
+}
+
+.studio24-article-content a,
+.zw-blog-prose a {
+  color: #A6A182 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  transition: color 0.2s ease !important;
+}
+
+.studio24-article-content a:hover,
+.zw-blog-prose a:hover {
+  color: #D4CEB0 !important;
+}
+
+.studio24-article-content blockquote,
+.zw-blog-prose blockquote {
+  margin: 2rem 0 !important;
+  padding: 1.25rem 1.75rem !important;
+  border-left: 3px solid #A6A182 !important;
+  background-color: rgba(166, 161, 130, 0.05) !important;
+  border-radius: 0 4px 4px 0 !important;
+  font-style: italic !important;
+  color: #E4DFD5 !important;
+}
+
+.studio24-article-content blockquote p,
+.zw-blog-prose blockquote p {
+  color: #E4DFD5 !important;
+  margin-bottom: 0 !important;
+}
+
+.studio24-article-content ul,
+.zw-blog-prose ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.studio24-article-content ol,
+.zw-blog-prose ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.studio24-article-content li,
+.zw-blog-prose li {
+  color: #D6D2C9 !important;
+  margin-top: 0.4rem !important;
+  margin-bottom: 0.4rem !important;
+  line-height: 1.8 !important;
+}
+
+.studio24-article-content hr,
+.zw-blog-prose hr {
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin: 2.5rem 0 !important;
+}
+
+.studio24-article-content figure img,
+.zw-blog-prose figure img {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.studio24-article-content figcaption,
+.zw-blog-prose figcaption {
+  color: #A1A1AA !important;
+  font-size: 0.8125rem !important;
+  font-family: monospace !important;
+  letter-spacing: 0.02em !important;
+}
+
+.studio24-article-content .zw-blog-table-wrap,
+.zw-blog-prose .zw-blog-table-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #121215 !important;
+}
+
+.studio24-article-content th,
+.zw-blog-prose th {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.studio24-article-content td,
+.zw-blog-prose td {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #D6D2C9 !important;
+}
+
+.studio24-article-content tr:nth-child(even) td,
+.zw-blog-prose tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.studio24-article-content code,
+.zw-blog-prose code {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #A6A182 !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  font-family: monospace !important;
+  font-size: 0.9em !important;
+}
+
+
 
 
 /* --- @zwantum/blog-admin/admin.css --- */
@@ -1637,4 +1835,202 @@
   font-weight: inherit !important;
   font-family: inherit !important;
 }
+
+/* ==========================================================================
+   Studio 24 Noir Atelier Blog Reader Dark Mode Typography
+   High contrast, warm luxury editorial styling for dark background (#09090b)
+   ========================================================================== */
+
+.studio24-article-content,
+.studio24-article-content .zw-blog-content,
+.studio24-article-content .blog-content,
+.studio24-article-content .zw-blog-prose,
+.zw-blog-prose {
+  color: #D6D2C9 !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.85 !important;
+}
+
+.studio24-article-content p,
+.zw-blog-prose p {
+  color: #D6D2C9 !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.85 !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.studio24-article-content h1,
+.studio24-article-content h2,
+.studio24-article-content h3,
+.studio24-article-content h4,
+.studio24-article-content h5,
+.studio24-article-content h6,
+.zw-blog-prose h1,
+.zw-blog-prose h2,
+.zw-blog-prose h3,
+.zw-blog-prose h4,
+.zw-blog-prose h5,
+.zw-blog-prose h6 {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.3 !important;
+}
+
+.studio24-article-content h1,
+.zw-blog-prose h1 {
+  font-size: 2.25rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.studio24-article-content h2,
+.zw-blog-prose h2 {
+  font-size: 1.75rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-bottom: 0.6rem !important;
+}
+
+.studio24-article-content h3,
+.zw-blog-prose h3 {
+  font-size: 1.35rem !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.studio24-article-content h4,
+.zw-blog-prose h4 {
+  font-size: 1.15rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.studio24-article-content strong,
+.studio24-article-content b,
+.zw-blog-prose strong,
+.zw-blog-prose b {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+.studio24-article-content em,
+.studio24-article-content i,
+.zw-blog-prose em,
+.zw-blog-prose i {
+  color: #ECE7DE !important;
+}
+
+.studio24-article-content a,
+.zw-blog-prose a {
+  color: #A6A182 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  transition: color 0.2s ease !important;
+}
+
+.studio24-article-content a:hover,
+.zw-blog-prose a:hover {
+  color: #D4CEB0 !important;
+}
+
+.studio24-article-content blockquote,
+.zw-blog-prose blockquote {
+  margin: 2rem 0 !important;
+  padding: 1.25rem 1.75rem !important;
+  border-left: 3px solid #A6A182 !important;
+  background-color: rgba(166, 161, 130, 0.05) !important;
+  border-radius: 0 4px 4px 0 !important;
+  font-style: italic !important;
+  color: #E4DFD5 !important;
+}
+
+.studio24-article-content blockquote p,
+.zw-blog-prose blockquote p {
+  color: #E4DFD5 !important;
+  margin-bottom: 0 !important;
+}
+
+.studio24-article-content ul,
+.zw-blog-prose ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.studio24-article-content ol,
+.zw-blog-prose ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.studio24-article-content li,
+.zw-blog-prose li {
+  color: #D6D2C9 !important;
+  margin-top: 0.4rem !important;
+  margin-bottom: 0.4rem !important;
+  line-height: 1.8 !important;
+}
+
+.studio24-article-content hr,
+.zw-blog-prose hr {
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin: 2.5rem 0 !important;
+}
+
+.studio24-article-content figure img,
+.zw-blog-prose figure img {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.studio24-article-content figcaption,
+.zw-blog-prose figcaption {
+  color: #A1A1AA !important;
+  font-size: 0.8125rem !important;
+  font-family: monospace !important;
+  letter-spacing: 0.02em !important;
+}
+
+.studio24-article-content .zw-blog-table-wrap,
+.zw-blog-prose .zw-blog-table-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #121215 !important;
+}
+
+.studio24-article-content th,
+.zw-blog-prose th {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.studio24-article-content td,
+.zw-blog-prose td {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #D6D2C9 !important;
+}
+
+.studio24-article-content tr:nth-child(even) td,
+.zw-blog-prose tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.studio24-article-content code,
+.zw-blog-prose code {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #A6A182 !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  font-family: monospace !important;
+  font-size: 0.9em !important;
+}
+
 

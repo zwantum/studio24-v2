@@ -12,7 +12,7 @@ export default function BlogPostReader({ content, className = 'zw-blog-prose' }:
   if (!content) return null;
 
   return (
-    <div className="studio24-article-content">
+    <div className="studio24-article-content text-[#D6D2C9]">
       <BlogContent
         content={content}
         className={className}

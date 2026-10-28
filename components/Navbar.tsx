@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 interface NavItem {
@@ -11,7 +12,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '/#hero-section' },
+  { name: 'Home', href: '/' },
   { name: 'Services', href: '/#architectural-services' },
   { name: 'Portfolio', href: '/#portfolio-curation' },
   { name: 'Why Us', href: '/#why-studio24' },
@@ -20,10 +21,13 @@ const navItems: NavItem[] = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero-section');
   const drawerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const isHomePage = pathname === '/';
 
   // Close drawer on click outside or escape key
   useEffect(() => {
@@ -54,12 +58,15 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Track active section on scroll
+  // Track active section on scroll when on homepage
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
       for (const item of navItems) {
-        const id = item.href.replace('#', '');
+        if (!item.href.includes('#')) continue;
+        const id = item.href.replace('/#', '').replace('#', '');
         const el = document.getElementById(id);
         if (el) {
           const top = el.offsetTop;
@@ -74,13 +81,13 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface-noir/85 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_1px_12px_rgba(0,0,0,0.5)]">
       <div className="h-16 sm:h-20 w-full px-margin-mobile md:px-margin-tablet lg:px-8 xl:px-margin flex items-center justify-between gap-2 sm:gap-4 lg:gap-6">
-        {/* Brand Logo */}
-        <Link href="/#hero-section" className="flex items-center shrink-0" aria-label="Studio24 by Shreya Home">
+        {/* Brand Logo - Next.js Link with prefetch for instant home transition */}
+        <Link href="/" prefetch={true} className="flex items-center shrink-0" aria-label="Studio24 by Shreya Home">
           <div className="relative h-7 sm:h-9 md:h-10 w-28 sm:w-36 md:w-40">
             <Image
               src="/Studio24_Logo.webp"
@@ -92,35 +99,40 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - 100% Next.js Links for SPA navigation without hard page reloads */}
         <nav className="hidden lg:flex items-center gap-3 xl:gap-6 2xl:gap-8" aria-label="Main Navigation">
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.replace('#', '');
+            const isAnchor = item.href.startsWith('/#') || item.href.startsWith('#');
+            const isActive = item.href === '/'
+              ? isHomePage && (!activeSection || activeSection === 'hero-section')
+              : isAnchor
+              ? isHomePage && activeSection === item.href.replace('/#', '').replace('#', '')
+              : pathname.startsWith(item.href);
+
+            const linkClass = `font-label-button text-[12.5px] xl:text-label-button uppercase transition-colors tracking-wider xl:tracking-widest whitespace-nowrap ${
+              isActive
+                ? 'text-primary font-medium border-b border-primary/50 pb-0.5'
+                : 'text-on-surface-variant hover:text-primary'
+            }`;
+
             return (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`font-label-button text-[12.5px] xl:text-label-button uppercase transition-colors tracking-wider xl:tracking-widest whitespace-nowrap ${
-                  isActive
-                    ? 'text-primary font-medium border-b border-primary/50 pb-0.5'
-                    : 'text-on-surface-variant hover:text-primary'
-                }`}
-              >
+              <Link key={item.name} href={item.href} prefetch={true} className={linkClass}>
                 {item.name}
-              </a>
+              </Link>
             );
           })}
         </nav>
 
         {/* Right CTA and Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-          <a
+          <Link
             href="/#consultation-booking"
+            prefetch={true}
             className="inline-flex items-center justify-center px-3.5 sm:px-5 xl:px-6 py-2.5 min-h-[40px] sm:min-h-[44px] bg-white text-black font-semibold text-[11px] sm:text-xs uppercase tracking-wider transition-all hover:bg-zinc-200 shadow-[0_2px_15px_rgba(255,255,255,0.12)] shrink-0 whitespace-nowrap"
           >
             <span className="sm:hidden">Book Consult</span>
             <span className="hidden sm:inline">Book Consultation</span>
-          </a>
+          </Link>
 
           <button
             ref={buttonRef}
@@ -147,28 +159,38 @@ export default function Navbar() {
           aria-label="Mobile Navigation"
         >
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.replace('#', '');
+            const isAnchor = item.href.startsWith('/#') || item.href.startsWith('#');
+            const isActive = item.href === '/'
+              ? isHomePage && (!activeSection || activeSection === 'hero-section')
+              : isAnchor
+              ? isHomePage && activeSection === item.href.replace('/#', '').replace('#', '')
+              : pathname.startsWith(item.href);
+
+            const mobileLinkClass = `font-sans text-xs uppercase tracking-[0.2em] py-3.5 min-h-[44px] flex items-center border-b border-white/10 transition-colors ${
+              isActive ? 'text-white font-medium pl-1' : 'text-zinc-400 hover:text-white'
+            }`;
+
             return (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
+                prefetch={true}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`font-sans text-xs uppercase tracking-[0.2em] py-3.5 min-h-[44px] flex items-center border-b border-white/10 transition-colors ${
-                  isActive ? 'text-white font-medium pl-1' : 'text-zinc-400 hover:text-white'
-                }`}
+                className={mobileLinkClass}
               >
                 {item.name}
-              </a>
+              </Link>
             );
           })}
           <div className="pt-3 pb-1">
-            <a
+            <Link
               href="/#consultation-booking"
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center w-full min-h-[44px] py-3 bg-white text-black font-semibold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors text-center"
             >
               Book Consultation
-            </a>
+            </Link>
           </div>
         </div>
       )}

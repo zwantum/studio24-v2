@@ -324,25 +324,25 @@ export default function ConsultationSection() {
                   />
                 </div>
 
-                <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
                   <button
                     disabled={status === 'loading'}
-                    className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-white text-black font-semibold text-xs sm:text-sm uppercase tracking-widest min-h-[44px] hover:bg-zinc-200 transition-all shadow-[0_4px_25px_rgba(255,255,255,0.15)] flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                    className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-black font-semibold text-xs sm:text-[12.5px] uppercase tracking-wider sm:tracking-widest min-h-[40px] sm:min-h-[42px] hover:bg-zinc-200 transition-all shadow-[0_2px_15px_rgba(255,255,255,0.12)] inline-flex items-center justify-center gap-2.5 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer whitespace-nowrap shrink-0"
                     type="submit"
                   >
                     {status === 'loading' ? (
                       <>
-                        <span>Submitting...</span>
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span className="whitespace-nowrap">Submitting...</span>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
                       </>
                     ) : (
                       <>
-                        <span>Confirm Consultation Call</span>
-                        <Send className="w-4 h-4" />
+                        <span className="whitespace-nowrap">Confirm Consultation Call</span>
+                        <Send className="w-3.5 h-3.5 shrink-0" />
                       </>
                     )}
                   </button>
-                  <span className="font-label-caption text-label-caption text-zinc-400 text-center sm:text-right text-[11px] sm:text-xs">
+                  <span className="font-label-caption text-zinc-400 text-center sm:text-right text-[11px] sm:text-xs">
                     100% Free Initial Assessment • Zero Obligation
                   </span>
                 </div>

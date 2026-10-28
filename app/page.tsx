@@ -16,6 +16,8 @@ import ConsultationSection from '@/components/ConsultationSection';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
+export const revalidate = 300; // Static ISR cache for high-speed edge delivery
+
 export default function HomePage() {
   return (
     <>

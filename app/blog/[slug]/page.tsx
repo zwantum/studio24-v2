@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -24,6 +25,17 @@ interface BlogPostPageProps {
 }
 
 export const revalidate = 60; // ISR cache revalidation
+
+export async function generateStaticParams() {
+  try {
+    const posts = await getAllBlogPosts();
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch {
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -218,10 +230,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Featured Image */}
           {post.featured_image?.url && (
             <div className="my-8 sm:my-10 relative aspect-[16/10] overflow-hidden border border-white/[0.08] bg-zinc-900">
-              <img
+              <Image
                 src={post.featured_image.url}
                 alt={post.title}
-                className="w-full h-full object-cover"
+                fill
+                priority
+                unoptimized={post.featured_image.url.startsWith('http')}
+                sizes="(max-width: 1024px) 100vw, 860px"
+                className="object-cover"
               />
             </div>
           )}
